@@ -1,0 +1,51 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: power-shop-portal
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.174.132:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      datasource:
+        ds1:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr} #nacos连接地址
+            namespace: sentinel
+            groupId: SENTINEL_GROUP #nacos连接的分组名称
+            dataId: ${spring.application.name}-flow-rules #读取配置文件的名称
+            rule-type: flow #配置文件内容为flow
+        ds2:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr} #nacos连接地址
+            namespace: sentinel
+            groupId: SENTINEL_GROUP #nacos连接的分组名称
+            dataId: ${spring.application.name}-degrade-rules #读取配置文件的名称
+            rule-type: degrade #配置文件内容为degrade
+        ds3:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr} #nacos连接地址
+            namespace: sentinel
+            groupId: SENTINEL_GROUP #nacos连接的分组名称
+            dataId: ${spring.application.name}-authority-rules #读取配置文件的名称
+            rule-type: authority #配置文件内容为authority
+        ds4:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr} #nacos连接地址
+            namespace: sentinel
+            groupId: SENTINEL_GROUP #nacos连接的分组名称
+            dataId: ${spring.application.name}-system-rules #读取配置文件的名称
+            rule-type: system #配置文件内容为system
+        ds5:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr} #nacos连接地址
+            namespace: sentinel
+            groupId: SENTINEL_GROUP #nacos连接的分组名称
+            dataId: ${spring.application.name}-param-flow-rules #读取配置文件的名称
+            rule-type: param-flow #配置文件内容为param-flow
+feign:
+  sentinel:
+    enabled: true

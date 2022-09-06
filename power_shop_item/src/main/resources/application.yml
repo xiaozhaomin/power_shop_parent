@@ -1,0 +1,56 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.174.132:8848
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.174.130:3306/power_shop?characterEncoding=UTF-8
+    username: root
+    password: 1111
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: power-shop-item
+  redis:
+    cluster:
+      nodes:
+        - 192.168.174.134:7001
+        - 192.168.174.134:7002
+        - 192.168.174.134:7003
+        - 192.168.174.134:7004
+        - 192.168.174.134:7005
+        - 192.168.174.134:7006
+  rabbitmq:
+    host: 192.168.174.137
+    username: admin
+    password: 1111
+    virtual-host: /
+    publisher-returns: true #开启消息退回回调
+    publisher-confirm-type: correlated #开启消息确认回调
+    jedis:
+      pool:
+        max-active: 20 #连接池最大连接数
+        max-idle: 10 #连接池中的最大空闲连接
+        min-idle: 5 # 连接池中的最小空闲连接
+fdfs:
+  so-timeout: 1501 # 超时时间
+  connect-timeout: 601 # 连接超时时间
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+  tracker-list: # tracker地址：你的虚拟机服务器地址+端口（默认是22122）
+    - 192.168.174.133:22122
+#配置缓存首页商品分类的 key
+PROTAL_CATRESULT: PROTAL_CATRESULT
+#商品详情
+ITEM_INFO: ITEM_INFO
+BASE: BASE
+DESC: DESC
+PARAM: PARAM
+ITEM_INFO_EXPIRE: 86400
+#分布式锁
+SETNX_LOCK_BASC: SETNX_LOCK_BASC
+SETNX_LOCK_DESC: SETNX_LOCK_DESC
+SETNX_LOCK_PARAM: SETNX_LOCK_PARAM

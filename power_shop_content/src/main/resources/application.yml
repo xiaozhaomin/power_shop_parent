@@ -1,0 +1,41 @@
+server:
+  port: 8091
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.174.130:3306/power_shop?characterEncoding=UTF-8
+    username: root
+    password: 1111
+    type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.174.132:8848
+  application:
+    name: power-shop-content
+  redis:
+    cluster:
+      nodes:
+        - 192.168.174.134:7001
+        - 192.168.174.134:7002
+        - 192.168.174.134:7003
+        - 192.168.174.134:7004
+        - 192.168.174.134:7005
+        - 192.168.174.134:7006
+    jedis:
+      pool:
+        max-active: 20 #连接池最大连接数
+        max-idle: 10 #连接池中的最大空闲连接
+        min-idle: 5 # 连接池中的最小空闲连接
+#大广告位图片信息
+AD_CATEGORY_ID: 89
+AD_HEIGHT: 240
+AD_WIDTH: 670
+AD_HEIGHTB: 240
+AD_WIDTHB: 550
+#配置缓存首页大广告位的 key
+PORTAL_AD: PORTAL_AD
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

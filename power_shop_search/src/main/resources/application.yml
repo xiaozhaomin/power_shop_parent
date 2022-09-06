@@ -1,0 +1,34 @@
+server:
+  port: 8093
+spring:
+  application:
+    name: power-shop-search
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.174.130:3306/power_shop?characterEncoding=UTF-8
+    username: root
+    password: 1111
+    type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.174.132:8848
+  elasticsearch:
+    rest:
+      uris:
+        - http://192.168.174.134:9200
+        - http://192.168.174.135:9200
+  rabbitmq:
+    host: 192.168.174.137
+    username: admin
+    password: 1111
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
+      direct:
+        acknowledge-mode: manual
+#索引名称
+ES_INDEX_NAME: power_shop
+#类型名称
+ES_TYPE_NAME: item

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.powershop.mapper.SearchItemMapper" >
+    <select id="selectSearchItem" resultType="com.powershop.pojo.SearchItem">
+        SELECT
+            t1.id,
+            t1.title item_title,
+            t1.sell_point item_sell_point,
+            t1.price item_price,
+            t1.image item_image,
+            t2.name item_category_name,
+            t3.item_desc item_desc
+        FROM
+            tb_item t1,
+            tb_item_cat t2,
+            tb_item_desc t3
+        WHERE
+            t1.cid = t2.id
+            AND t1.id = t3.item_id
+            AND t1.`status` =1
+    </select>
+    <select id="getSearchItemByItemId" parameterType="long" resultType="com.powershop.pojo.SearchItem">
+        SELECT
+            t1.id,
+            t1.title item_title,
+            t1.sell_point item_sell_point,
+            t1.price item_price,
+            t1.image item_image,
+            t2.name item_category_name,
+            t3.item_desc item_desc
+        FROM
+            tb_item t1,
+            tb_item_cat t2,
+            tb_item_desc t3
+        WHERE
+            t1.cid = t2.id
+          AND t1.id = t3.item_id
+          AND t1.`status` =1
+          AND t1.id = #{itemId}
+    </select>
+</mapper>
