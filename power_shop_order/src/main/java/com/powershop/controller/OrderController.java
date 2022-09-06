@@ -49,6 +49,6 @@ public class OrderController {
         if (orderId != null){
             return Result.ok(orderId);
         }
-        return Result.error("订单提交失败");
+        return Result.error("提交失败");
     }
 }
